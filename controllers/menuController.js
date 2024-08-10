@@ -24,7 +24,9 @@ async function create(req, res) {
 
 async function getById(req, res) {
   try {
-
+    const menuItem = await MenuItem.findById(req.params.id)
+    if (!menuItem) return res.status(404).json({ message: 'Menu item not found' })
+    res.json(menuItem)
   } catch (err) {
     console.log(err)
     res.status(500).json(err)

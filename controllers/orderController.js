@@ -24,7 +24,9 @@ async function create(req, res) {
 
 async function getById(req, res) {
   try {
-    
+    const order = await Order.findById(req.params.id)
+    if (!order) return res.status(404).json({ message: 'Order not found' })
+    res.json(order)
   } catch (err) {
     console.log(err)
     res.status(500).json(err)
