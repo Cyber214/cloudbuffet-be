@@ -11,8 +11,11 @@ async function index(req, res) {
 }
 
 async function create(req, res) {
+  const { name, description, price } = req.body
   try {
-
+    const newMenuItem = new MenuItem({ name, description, price })
+    const savedMenuItem = await newMenuItem.save()
+    res.status(201).json(savedMenuItem)
   } catch (err) {
     console.log(err)
     res.status(500).json(err)

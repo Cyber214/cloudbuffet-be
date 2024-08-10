@@ -11,8 +11,11 @@ async function index(req, res) {
 }
 
 async function create(req, res) {
+  const { profileId, items, total } = req.body
   try {
-    
+    const newOrder = new Order({ profileId, items, total })
+    const savedOrder = await newOrder.save()
+    res.status(201).json(savedOrder)
   } catch (err) {
     console.log(err)
     res.status(500).json(err)
