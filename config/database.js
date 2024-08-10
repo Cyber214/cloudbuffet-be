@@ -5,5 +5,5 @@ const db = mongoose.connection
 mongoose.connect(process.env.DATABASE_URL)
 
 db.on('connected', function () {
-  console.log(`MongoDB is ${db.name} at ${db.host}:${db.port}`)
+  console.log(`MongoDB name is ${db.name} at ${db.host}:${db.port}`)
 })
